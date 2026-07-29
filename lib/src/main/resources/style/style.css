@@ -28,3 +28,8 @@ This theme should be applied in both dark and light themes.
 
 .root {
 }
+
+.warning_label {
+    -fx-color: black;
+    -fx-background-color: yellow;
+}

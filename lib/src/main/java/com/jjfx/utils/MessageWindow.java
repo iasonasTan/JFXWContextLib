@@ -14,18 +14,30 @@ import java.util.Objects;
 public class MessageWindow extends Stage {
     private final VBox mMainLayout = new VBox(10);
     private final HBox mButtonsLayout = new HBox(10);
-    private Scene mScene;
+    private final Scene mScene;
     private Dimension2D mDimension = new Dimension2D(300, 200);
+    private final Label mWarningLabel = new Label("CALL `showWindow()` instead of `show()`.");
 
     public MessageWindow(String title, Stage parent, String message, String description) {
         addText(message, description);
         initOwner(parent);
         setAlwaysOnTop(true);
         setTitle(title);
+
+        setWidth(mDimension.getWidth());
+        setHeight(mDimension.getHeight());
+
         mMainLayout.setAlignment(Pos.CENTER);
         mButtonsLayout.setAlignment(Pos.CENTER);
         mMainLayout.getChildren().add(mButtonsLayout);
         mMainLayout.getStylesheets().add(getStylesheet("style.css"));
+        mScene = new Scene(mMainLayout, mDimension.getWidth(), mDimension.getHeight());
+
+        setScene(mScene);
+
+        // Gets removed when showWindow is used.
+        mWarningLabel.getStyleClass().add("warning_label");
+        mMainLayout.getChildren().add(mWarningLabel);
     }
 
     protected void addText(String message, String description) {
@@ -50,9 +62,7 @@ public class MessageWindow extends Stage {
     }
 
     public void showWindow() {
-        if(mScene == null) {
-            mScene = new Scene(mMainLayout, 0, 0);
-        }
+        mMainLayout.getChildren().remove(mWarningLabel);
         setWidth(mDimension.getWidth());
         setHeight(mDimension.getHeight());
         setScene(mScene);
@@ -76,8 +86,14 @@ public class MessageWindow extends Stage {
         return Objects.requireNonNull(getClass().getResource("/style/" + name)).toExternalForm();
     }
 
+    @Deprecated
     public void closeWindow() {
         close();
+    }
+
+    @Override
+    public void close() {
+        super.close();
     }
 
     public interface MessageWindowListener {

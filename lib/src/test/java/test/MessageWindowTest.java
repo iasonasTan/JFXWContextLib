@@ -16,7 +16,7 @@ public class MessageWindowTest {
                     null,
                     "This is a light themed window.",
                     "This is a junit4 test for the light theme of this window");
-            msgWin.addAction("Ok", MessageWindow::closeWindow);
+            msgWin.addAction("Ok", MessageWindow::close);
             msgWin.showWindow(false);
         });
 
@@ -32,7 +32,7 @@ public class MessageWindowTest {
                     null,
                     "This is a dark themed window.",
                     "This is a junit4 test for the dark theme of this window");
-            msgWin.addAction("Ok", MessageWindow::closeWindow);
+            msgWin.addAction("Ok", MessageWindow::close);
             msgWin.showWindow(true);
         });
 
@@ -40,7 +40,7 @@ public class MessageWindowTest {
     }
 
     @Test
-    public void switchable() throws InterruptedException {
+    public void switchTheme() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
 
         Platform.startup(() -> {
@@ -49,10 +49,26 @@ public class MessageWindowTest {
                     "This is a dark themed window.",
                     "This is a junit4 test for the dark theme of this window");
             msgWin.addAction("Ok", w -> {
-                w.closeWindow();
+                w.close();
                 msgWin.showWindow(false);
             });
             msgWin.showWindow(true);
+        });
+
+        latch.await();
+    }
+
+    @Test
+    public void wrongStartMethod() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+
+        Platform.startup(() -> {
+            var msgWin = new MessageWindow("JUnit4 Test Window",
+                    null,
+                    "This is a dark themed window.",
+                    "This is a junit4 test for the dark theme of this window");
+            msgWin.addAction("Ok", MessageWindow::close);
+            msgWin.show();
         });
 
         latch.await();
