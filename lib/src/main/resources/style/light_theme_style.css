@@ -1,0 +1,15 @@
+.title {
+    -fx-font-weight: bold;
+}
+
+* {
+    -fx-base: #f0f0f0;
+    -fx-background: #ffffff;
+    -fx-control-inner-background: #ffffff;
+}
+
+.root {
+    -fx-base: #f0f0f0;
+    -fx-background: #ffffff;
+    -fx-control-inner-background: #ffffff;
+}

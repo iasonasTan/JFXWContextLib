@@ -9,9 +9,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class MessageWindow extends Stage {
     private final VBox mMainLayout = new VBox(10);
     private final HBox mButtonsLayout = new HBox(10);
+    private Scene mScene;
     private Dimension2D mDimension = new Dimension2D(300, 200);
 
     public MessageWindow(String title, Stage parent, String message, String description) {
@@ -21,11 +24,13 @@ public class MessageWindow extends Stage {
         setTitle(title);
         mMainLayout.setAlignment(Pos.CENTER);
         mButtonsLayout.setAlignment(Pos.CENTER);
+        mMainLayout.getChildren().add(mButtonsLayout);
+        mMainLayout.getStylesheets().add(getStylesheet("style.css"));
     }
 
     protected void addText(String message, String description) {
         Label titleLabel = new Label(message);
-        titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: large;");
+        titleLabel.getStyleClass().add("title");
         mMainLayout.getChildren().add(titleLabel);
 
         Label descriptionLabel = new Label(description);
@@ -45,12 +50,30 @@ public class MessageWindow extends Stage {
     }
 
     public void showWindow() {
-        mMainLayout.getChildren().add(mButtonsLayout);
+        if(mScene == null) {
+            mScene = new Scene(mMainLayout, 0, 0);
+        }
         setWidth(mDimension.getWidth());
         setHeight(mDimension.getHeight());
-        setScene(new Scene(mMainLayout, 0, 0));
+        setScene(mScene);
         sizeToScene();
         show();
+    }
+
+    public void showWindow(boolean darkTheme) {
+        if (darkTheme) {
+            mMainLayout.getStylesheets().remove(getStylesheet("light_theme_style.css"));
+            mMainLayout.getStylesheets().add(getStylesheet("dark_theme_style.css"));
+        } else {
+            mMainLayout.getStylesheets().remove(getStylesheet("dark_theme_style.css"));
+            mMainLayout.getStylesheets().add(getStylesheet("light_theme_style.css"));
+        }
+
+        showWindow();
+    }
+
+    private String getStylesheet(String name) {
+        return Objects.requireNonNull(getClass().getResource("/style/" + name)).toExternalForm();
     }
 
     public void closeWindow() {
