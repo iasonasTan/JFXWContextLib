@@ -84,7 +84,7 @@ abstract class UtilWindow extends Stage implements Disposable, Window {
     }
 
     protected String getStylesheet(String name) {
-        return Objects.requireNonNull(getClass().getResource("/style/" + name)).toExternalForm();
+        return Objects.requireNonNull(getClass().getResource("/je-jfx-utils/style/" + name)).toExternalForm();
     }
 
     public void addActionOk() {
