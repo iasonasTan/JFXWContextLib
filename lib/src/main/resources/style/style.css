@@ -5,28 +5,9 @@ This theme should be applied in both dark and light themes.
     -fx-font-weight: bold;
 }
 
-.button {
-
-}
-
-.input {
-
-}
-
-.label {
-
-}
-
-.choice {
-
-}
-
 * {
     -fx-font-size: larger;
     -fx-font-family: "Arial";
-}
-
-.root {
 }
 
 .warning_label {
