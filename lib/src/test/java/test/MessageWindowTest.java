@@ -16,7 +16,10 @@ public class MessageWindowTest {
                     null,
                     "This is a light themed window.",
                     "This is a junit4 test for the light theme of this window");
-            msgWin.addAction("Ok", MessageWindow::close);
+            msgWin.addAction("Ok", mw -> {
+                mw.close();
+                Platform.exit();
+            });
             msgWin.showWindow(false);
         });
 
@@ -32,7 +35,10 @@ public class MessageWindowTest {
                     null,
                     "This is a dark themed window.",
                     "This is a junit4 test for the dark theme of this window");
-            msgWin.addAction("Ok", MessageWindow::close);
+            msgWin.addAction("Ok", mw -> {
+                mw.close();
+                Platform.exit();
+            });
             msgWin.showWindow(true);
         });
 
@@ -67,7 +73,10 @@ public class MessageWindowTest {
                     null,
                     "This is a dark themed window.",
                     "This is a junit4 test for the dark theme of this window");
-            msgWin.addAction("Ok", MessageWindow::close);
+            msgWin.addAction("Ok", mw -> {
+                mw.close();
+                Platform.exit();
+            });
             msgWin.show();
         });
 

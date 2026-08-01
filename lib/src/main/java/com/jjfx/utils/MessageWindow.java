@@ -11,12 +11,13 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class MessageWindow extends Stage {
     private final VBox mMainLayout = new VBox(10);
     private final HBox mButtonsLayout = new HBox(10);
     private final Scene mScene;
     private Dimension2D mDimension = new Dimension2D(300, 200);
-    private final Label mWarningLabel = new Label("CALL `showWindow()` instead of `show()`.");
+    private final Label mWarningLabel = new Label("Call `showWindow()` instead of `show()`.");
 
     public MessageWindow(String title, Stage parent, String message, String description) {
         addText(message, description);

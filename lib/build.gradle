@@ -41,3 +41,7 @@ publishing {
         }
     }
 }
+
+test {
+    jvmArgs += "--enable-native-access=ALL-UNNAMED"
+}
