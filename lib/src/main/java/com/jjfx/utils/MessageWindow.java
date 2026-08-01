@@ -66,7 +66,7 @@ public class MessageWindow extends Stage {
         setWidth(mDimension.getWidth());
         setHeight(mDimension.getHeight());
         setScene(mScene);
-        sizeToScene();
+        //sizeToScene();
         show();
     }
 
