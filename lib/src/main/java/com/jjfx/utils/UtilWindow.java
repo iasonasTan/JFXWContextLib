@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-abstract class UtilWindow extends Stage implements Disposable {
+abstract class UtilWindow extends Stage implements Disposable, Window {
     protected final VBox mMainLayout = new VBox(10);
     protected final HBox mButtonsLayout = new HBox(10);
     protected final Scene mScene;
@@ -40,7 +40,7 @@ abstract class UtilWindow extends Stage implements Disposable {
         mMainLayout.getChildren().add(mWarningLabel);
     }
 
-    public void addAction(String text, MessageWindowListener<Disposable> action) {
+    public void addAction(String text, MessageWindowListener<Window> action) {
         Button button = new Button(text);
         button.setOnAction(_ -> action.onOk(this));
         mButtonsLayout.getChildren().add(button);
@@ -55,6 +55,7 @@ abstract class UtilWindow extends Stage implements Disposable {
         showWindow(false);
     }
 
+    @Override
     public void showWindow(boolean darkTheme) {
         if (darkTheme) {
             mMainLayout.getStylesheets().remove(getStylesheet("light_theme_style.css"));
@@ -84,5 +85,9 @@ abstract class UtilWindow extends Stage implements Disposable {
 
     protected String getStylesheet(String name) {
         return Objects.requireNonNull(getClass().getResource("/style/" + name)).toExternalForm();
+    }
+
+    public void addActionOk() {
+        addAction("OK", Disposable::close);
     }
 }

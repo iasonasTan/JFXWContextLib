@@ -31,8 +31,8 @@ public final class InputWindow extends UtilWindow {
     }
 
     @Override
-    public void addAction(String text, final MessageWindowListener<Disposable> action) {
-        MessageWindowListener<Disposable> action2 = window -> {
+    public void addAction(String text, final MessageWindowListener<Window> action) {
+        MessageWindowListener<Window> action2 = window -> {
             action.onOk(window);
             mRunnables.forEach(Runnable::run);
         };

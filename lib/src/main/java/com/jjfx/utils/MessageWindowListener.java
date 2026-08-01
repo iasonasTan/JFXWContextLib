@@ -1,5 +1,5 @@
 package com.jjfx.utils;
 
-public interface MessageWindowListener<T extends Disposable> {
+public interface MessageWindowListener<T extends Window> {
     void onOk(T window);
 }
