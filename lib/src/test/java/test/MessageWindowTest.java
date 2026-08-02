@@ -9,10 +9,8 @@ import java.util.concurrent.CountDownLatch;
 
 public class MessageWindowTest {
     @Test
-    public void showLight() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-
-        Platform.startup(() -> {
+    public void showLight() {
+        FXR.runFX(() -> {
             var msgWin = new MessageWindow("JUnit4 Test Window",
                     null,
                     "This is a light themed window.",
@@ -23,15 +21,11 @@ public class MessageWindowTest {
             });
             msgWin.showWindow(false);
         });
-
-        latch.await();
     }
 
     @Test
-    public void showDark() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-
-        Platform.startup(() -> {
+    public void showDark() {
+        FXR.runFX(() -> {
             var msgWin = new MessageWindow("JUnit4 Test Window",
                     null,
                     "This is a dark themed window.",
@@ -42,8 +36,6 @@ public class MessageWindowTest {
             });
             msgWin.showWindow(true);
         });
-
-        latch.await();
     }
 
     @Test
@@ -66,10 +58,8 @@ public class MessageWindowTest {
     }
 
     @Test
-    public void wrongStartMethod() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-
-        Platform.startup(() -> {
+    public void wrongStartMethod() {
+        FXR.runFX(() -> {
             var msgWin = new MessageWindow("JUnit4 Test Window",
                     null,
                     "This is a dark themed window.",
@@ -80,15 +70,11 @@ public class MessageWindowTest {
             });
             msgWin.show();
         });
-
-        latch.await();
     }
 
     @Test
-    public void newMethods() throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(1);
-
-        Platform.startup(() -> {
+    public void newMethods() {
+        FXR.runFX(() -> {
             MessageWindow messageWindow = new MessageWindow(
                     "Test",
                     null,
@@ -99,7 +85,5 @@ public class MessageWindowTest {
             messageWindow.addActionOk();
             messageWindow.showWindow(false);
         });
-
-        latch.await();
     }
 }
