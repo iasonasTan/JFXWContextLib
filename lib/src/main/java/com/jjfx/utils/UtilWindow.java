@@ -29,7 +29,6 @@ abstract class UtilWindow extends Stage implements Disposable, Window {
 
         mMainLayout.setAlignment(Pos.CENTER);
         mButtonsLayout.setAlignment(Pos.CENTER);
-        mMainLayout.getChildren().add(mButtonsLayout);
         mMainLayout.getStylesheets().add(getStylesheet("style.css"));
         mScene = new Scene(mMainLayout, mDimension.getWidth(), mDimension.getHeight());
 
@@ -66,6 +65,7 @@ abstract class UtilWindow extends Stage implements Disposable, Window {
         }
 
         mMainLayout.getChildren().remove(mWarningLabel);
+        mMainLayout.getChildren().add(mButtonsLayout);
         setWidth(mDimension.getWidth());
         setHeight(mDimension.getHeight());
         setScene(mScene);

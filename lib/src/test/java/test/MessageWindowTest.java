@@ -2,6 +2,7 @@ package test;
 
 import com.jjfx.utils.MessageWindow;
 import javafx.application.Platform;
+import javafx.geometry.Dimension2D;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
@@ -78,6 +79,25 @@ public class MessageWindowTest {
                 Platform.exit();
             });
             msgWin.show();
+        });
+
+        latch.await();
+    }
+
+    @Test
+    public void newMethods() throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(1);
+
+        Platform.startup(() -> {
+            MessageWindow messageWindow = new MessageWindow(
+                    "Vocabulary Quiz - Hint",
+                    null,
+                    "Load words from file",
+                    "Loads words from a file.\nFormat of file:\nkey1=value1\nkey2=value2\n...\nYou can choose a file by clicking 'Browse'"
+            );
+            messageWindow.setDimension(new Dimension2D(350, 300));
+            messageWindow.addActionOk();
+            messageWindow.showWindow(false);
         });
 
         latch.await();
