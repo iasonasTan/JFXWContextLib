@@ -90,10 +90,10 @@ public class MessageWindowTest {
 
         Platform.startup(() -> {
             MessageWindow messageWindow = new MessageWindow(
-                    "Vocabulary Quiz - Hint",
+                    "Test",
                     null,
-                    "Load words from file",
-                    "Loads words from a file.\nFormat of file:\nkey1=value1\nkey2=value2\n...\nYou can choose a file by clicking 'Browse'"
+                    "This is testing the new features!",
+                    "This library is so nice! I can use it all the time!"
             );
             messageWindow.setDimension(new Dimension2D(350, 300));
             messageWindow.addActionOk();

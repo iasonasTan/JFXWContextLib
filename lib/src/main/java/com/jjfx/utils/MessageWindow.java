@@ -3,7 +3,7 @@ package com.jjfx.utils;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public final class MessageWindow extends UtilWindow {
+public sealed class MessageWindow extends UtilWindow permits ExceptionWindow {
     public MessageWindow(String title, Stage parent, String message, String description) {
         super(title, parent);
         addText(message, description);
